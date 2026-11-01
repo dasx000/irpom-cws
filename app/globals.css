@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --animate-fade-in-up: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-bounce-slow: bounce-slow 2.2s ease-in-out infinite;
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Navbar landing page pakai position: fixed (melayang di atas hero), jadi
+   seksi yang dituju anchor link perlu jarak supaya judulnya tidak ketutup. */
+#data-irpom,
+#jelajah,
+#sebaran {
+  scroll-margin-top: 88px;
+}
+
+/* Leaflet memberi tabindex ke tiap polygon (aksesibilitas keyboard), jadi
+   klik memicu outline fokus default browser -- muncul sebagai kotak hitam
+   mengelilingi bounding box polygon. Highlight klik sendiri sudah ditangani
+   lewat style Leaflet (lihat KecamatanChoropleth.tsx), jadi outline browser
+   ini cukup dimatikan. */
+.leaflet-interactive:focus {
+  outline: none;
+}
+
+/* Label nama desa di PetaLokasiPicker (dari data batas desa resmi kita
+   sendiri, bukan basemap) -- dibikin ringkas, tanpa balon/panah bawaan
+   Leaflet, supaya tidak menutupi peta yang kecil. */
+.peta-desa-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  font-size: 9px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-shadow:
+    0 1px 2px #fff,
+    0 -1px 2px #fff,
+    1px 0 2px #fff,
+    -1px 0 2px #fff;
+  white-space: nowrap;
+}
+
+.peta-desa-label::before {
+  display: none;
+}
+
+/* Label nama kecamatan di KecamatanChoropleth (peta sebaran) -- divIcon
+   custom (bukan tooltip Leaflet, biar tooltip hover yang menampilkan
+   jumlah unit tetap terpisah/tidak tertimpa). Ukurannya responsif lewat
+   clamp(): kecil di layar sempit (HP), tetap terbaca di layar lebar,
+   tidak pernah membesar berlebihan. */
+.leaflet-div-icon.peta-kecamatan-label-icon {
+  background: transparent;
+  border: none;
+}
+
+.peta-kecamatan-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-size: clamp(9px, 1.6vw, 12px);
+  font-weight: 700;
+  color: #111827;
+  text-shadow:
+    0 1px 2px #fff,
+    0 -1px 2px #fff,
+    1px 0 2px #fff,
+    -1px 0 2px #fff,
+    0 0 3px #fff;
+  pointer-events: none;
+}
