@@ -68,8 +68,8 @@ export default function LandingHero({
 
       <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 py-28 text-center text-white sm:px-6">
         <p className="animate-fade-in-up text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">{NAMA_DINAS}</p>
-        <p className="animate-fade-in-up mt-2 mb-6 text-xl leading-snug text-sky-100 sm:text-2xl md:text-3xl" style={{ animationDelay: "50ms" }}>
-          Katimker: <span className="font-bold text-white">{KATIMKER}</span>
+        <p className="animate-fade-in-up mt-2 mb-6 text-[10px] leading-snug text-sky-100 sm:text-xs" style={{ animationDelay: "50ms" }}>
+          KATIMKER:{" "}<span className="font-bold text-white">{KATIMKER}</span>
         </p>
 
         <h1
