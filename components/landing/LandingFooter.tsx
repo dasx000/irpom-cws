@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Code2 } from "lucide-react";
 import Lambang from "@/components/Lambang";
-import { NAMA_DINAS } from "@/lib/instansi";
+import { NAMA_DINAS, SUMBER_DATA } from "@/lib/instansi";
 
 export default function LandingFooter() {
   return (
@@ -14,6 +14,7 @@ export default function LandingFooter() {
             <p className="text-xs">
               © {new Date().getFullYear()} Monitoring IRPOM Kabupaten Way Kanan
             </p>
+            <p className="text-[9px]">Sumber data: {SUMBER_DATA}</p>
           </div>
         </div>
         <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
